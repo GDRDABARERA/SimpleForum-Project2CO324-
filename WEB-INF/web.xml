@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+        <servlet>
+        <servlet-name>editPost</servlet-name>
+        <servlet-class>forumbox.EditPost</servlet-class>
+        </servlet>
+        <servlet-mapping>
+            <servlet-name> editPost</servlet-name>
+            <url-pattern>/editpost/*</url-pattern>
+        </servlet-mapping>
+        
+        <servlet>
+        <servlet-name>addcomment</servlet-name>
+        <servlet-class>forumbox.Addcomment</servlet-class>
+        </servlet>
+        <servlet-mapping>
+            <servlet-name> addcomment</servlet-name>
+            <url-pattern>/comment</url-pattern>
+        </servlet-mapping>
+
+    
+    <servlet>
+        <servlet-name>viewSinglePost</servlet-name>
+        <servlet-class>forumbox.ViewPost</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name> viewSinglePost</servlet-name>
+        <url-pattern>/post/*</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>Suggestion</servlet-name>
+        <servlet-class>forumbox.PostingnewpostServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GetUser</servlet-name>
+        <servlet-class>forumbox.GetUserServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GetUser</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Suggestion</servlet-name>
+        <url-pattern>/posting</url-pattern>
+        <url-pattern>/editpost/posting</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>ReadBack</servlet-name>
+        <servlet-class>forumbox.ReadBack</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ReadBack</servlet-name>
+        <url-pattern>/ReadBack</url-pattern>
+    </servlet-mapping>
+    <!-- <servlet>
+        <servlet-name>PostingnewpostServlet</servlet-name>
+        <servlet-class>forumbox.PostingnewpostServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>PostingnewpostServlet</servlet-name>
+        <url-pattern>/PostingnewpostServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetUserServlet</servlet-name>
+        <url-pattern>/GetUserServlet</url-pattern>
+    </servlet-mapping>  -->
+    <session-config>
+        <session-timeout>
+            60
+        </session-timeout>
+    </session-config>
+    <security-constraint>
+        <display-name>AdminConstraint</display-name>
+        <web-resource-collection>
+            <web-resource-name>Admin</web-resource-name>
+            <description/>
+            <url-pattern>/getpost</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <description/>
+            <role-name>AdminRole</role-name>
+        </auth-constraint>
+    </security-constraint>
+    <security-constraint>
+        <display-name>UserConstraint</display-name>
+        <web-resource-collection>
+            <web-resource-name>User</web-resource-name>
+            <description/>
+            <url-pattern>/</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <description/>
+            <role-name>UserRole</role-name>
+        </auth-constraint>
+    </security-constraint>
+    <security-constraint>
+        <display-name>tomcatConstraint</display-name>
+        <web-resource-collection>
+            <web-resource-name>tomcat</web-resource-name>
+            <description/>
+            <url-pattern>/secureUser/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <description/>
+            <role-name>tomcat</role-name>
+        </auth-constraint>
+    </security-constraint>
+    <login-config>
+        <auth-method>BASIC</auth-method>
+    </login-config>
+    <security-role>
+        <description>Admin's role</description>
+        <role-name>AdminRole</role-name>
+    </security-role>
+    <security-role>
+        <description>UserRole</description>
+        <role-name>UserRole</role-name>
+    </security-role>
+    <security-role>
+        <description>normal user</description>
+        <role-name>tomcat</role-name>
+    </security-role>
+</web-app>
